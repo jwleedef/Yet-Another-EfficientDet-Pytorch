@@ -22,6 +22,16 @@ from efficientdet.loss import FocalLoss
 from utils.sync_batchnorm import patch_replication_callback
 from utils.utils import replace_w_sync_bn, CustomDataParallel, get_last_weights, init_weights
 
+import visdom
+vis = visdom.Visdom()
+
+def loss_tracker(loss_plot, loss_value, num):
+    '''num, loss_value, are Tensor'''
+    vis.line(X=num,
+             Y=loss_value,
+             win = loss_plot,
+             update='append'
+             )
 
 class Params:
     def __init__(self, project_file):
@@ -96,6 +106,9 @@ def train(opt):
         torch.cuda.manual_seed(42)
     else:
         torch.manual_seed(42)
+
+    cls_loss_plt = vis.line(Y=torch.Tensor(1).zero_(),opts=dict(title='cls_loss_tracker', legend=['loss'], showlegend=True))
+    total_loss_plt = vis.line(Y=torch.Tensor(1).zero_(),opts=dict(title='total_loss_tracker', legend=['loss'], showlegend=True))
 
     opt.saved_path = opt.saved_path + f'/{params.project_name}/'
     opt.log_path = opt.log_path + f'/{params.project_name}/tensorboard/'
@@ -241,6 +254,9 @@ def train(opt):
                     optimizer.step()
 
                     epoch_loss.append(float(loss))
+
+                    loss_tracker(cls_loss_plt, torch.Tensor([cls_loss.item()]), torch.Tensor([step]))
+                    loss_tracker(totla_loss_plt, torch.Tensor([loss.item()]), torch.Tensor([step]))
 
                     progress_bar.set_description(
                         'Step: {}. Epoch: {}/{}. Iteration: {}/{}. Cls loss: {:.5f}. Reg loss: {:.5f}. Total loss: {:.5f}'.format(
