@@ -137,9 +137,15 @@ def _eval(coco_gt, image_ids, pred_json_path):
 
 if __name__ == '__main__':
     SET_NAME = params['val_set']
-    VAL_GT = f'datasets/{params["project_name"]}/annotations/instances_{SET_NAME}.json'
-    VAL_IMGS = f'datasets/{params["project_name"]}/{SET_NAME}/'
-    MAX_IMAGES = 10000
+
+    # annot, img path
+    annotPath = f'/data_ssd/Jaewoo/obstacle/Data/Annotations/instaces_{SET_NAME}.json'
+    imgPath = f'/data_ssd/Jaewoo/obstacle/Data/JPEGImages/'
+
+    VAL_GT = annotPath
+    VAL_IMGS = imgPath
+    ##
+    MAX_IMAGES = 100000
     coco_gt = COCO(VAL_GT)
     image_ids = coco_gt.getImgIds()[:MAX_IMAGES]
     

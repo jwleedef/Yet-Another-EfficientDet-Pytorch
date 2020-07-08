@@ -255,8 +255,9 @@ def train(opt):
 
                     epoch_loss.append(float(loss))
 
-                    loss_tracker(cls_loss_plt, torch.Tensor([cls_loss.item()]), torch.Tensor([step]))
-                    loss_tracker(totla_loss_plt, torch.Tensor([loss.item()]), torch.Tensor([step]))
+                    if epoch >= 2 :
+                        loss_tracker(cls_loss_plt, torch.Tensor([cls_loss.item()]), torch.Tensor([step]))
+                        loss_tracker(total_loss_plt, torch.Tensor([loss.item()]), torch.Tensor([step]))
 
                     progress_bar.set_description(
                         'Step: {}. Epoch: {}/{}. Iteration: {}/{}. Cls loss: {:.5f}. Reg loss: {:.5f}. Total loss: {:.5f}'.format(
