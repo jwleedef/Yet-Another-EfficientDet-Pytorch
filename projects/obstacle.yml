@@ -15,5 +15,4 @@ anchors_ratios: '[(1.0, 1.0), (1.4, 0.7), (0.7, 1.4)]'
 # category_id is one_indexed,
 
 obj_list: ['person','bicycle','bus','car','carrier','motorcycle','movable_signage','truck','bollard','chair','potted_plant','table','tree_trunk',
-'pole','bench','fire_hydrant','traffic_sign','traffic_light','traffic_light_controller','parking_meter','cat','dog','stroller','scooter','kiosk',
-'stop','table','power_controller','barricade','wheelchair']
+'pole','fire_hydrant']

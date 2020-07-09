@@ -15,7 +15,7 @@ class CocoDataset(Dataset):
         self.transform = transform
 
         rootPath = '/data_ssd/Jaewoo/obstacle/Data/'
-        self.coco = COCO(os.path.join(rootPath, 'Annotations', 'instances_' + self.set_name + '.json'))
+        self.coco = COCO(os.path.join(rootPath, 'instances_' + self.set_name + '.json'))
         self.image_ids = self.coco.getImgIds()
 
         self.load_classes()

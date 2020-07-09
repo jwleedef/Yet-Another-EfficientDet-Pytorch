@@ -255,7 +255,7 @@ def train(opt):
 
                     epoch_loss.append(float(loss))
 
-                    if epoch >= 2 :
+                    if step >= 1000 :
                         loss_tracker(cls_loss_plt, torch.Tensor([cls_loss.item()]), torch.Tensor([step]))
                         loss_tracker(total_loss_plt, torch.Tensor([loss.item()]), torch.Tensor([step]))
 

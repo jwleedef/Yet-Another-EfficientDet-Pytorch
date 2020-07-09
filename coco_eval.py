@@ -139,7 +139,7 @@ if __name__ == '__main__':
     SET_NAME = params['val_set']
 
     # annot, img path
-    annotPath = f'/data_ssd/Jaewoo/obstacle/Data/Annotations/instaces_{SET_NAME}.json'
+    annotPath = f'/data_ssd/Jaewoo/obstacle/Data/instances_{SET_NAME}.json'
     imgPath = f'/data_ssd/Jaewoo/obstacle/Data/JPEGImages/'
 
     VAL_GT = annotPath
